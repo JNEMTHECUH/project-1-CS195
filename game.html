@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 1 - CS195 | Tic Tac Toe</title>
-    <link rel="stylesheet" href="styles.css">
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 1 - CS195 | Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body class="game page">
-    
-    <header>
-        <h1>Tic Tac Toe Game</h1>
-    </header>
+  
+  <header>
+    <h1>Tic Tac Toe</h1>
+  </header>
 
-    <!-- Main game area -->
-    <main>
+  <main>
+    <!-- Message area -->
+    <div id="message">Player X's turn</div>
 
-        <!-- 3x3 Tic Tac Toe board -->
-        <div class="board">
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-            <div class="cell" data-cell></div>
-        </div>
+    <!-- 3x3 game board -->
+    <div id="board">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
 
-        <!-- Game control buttons -->
-        <button class="restart-button">Reset Game</button>
-        <a href="index.html" class="home-button">Back to Home</a>
+    <!-- Game controls -->
+    <div class="controls">
+      <button id="reset">Reset Game</button>
+      <a href="index.html" class="home-button">Back to Home</a>
+    </div>
+  </main>
 
-        <!-- Script for game logic-->
-        <script src="script.js"></script>
+  <footer>
+    <p>&copy; 2025 Juvencio Castro Juarez</p>
+  </footer>
 
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Juvencio Castro Juarez.</p>
-    </footer>
-    
+  <!-- Script for game logic -->
+  <script src="script.js"></script>
 </body>
 </html>
