@@ -1,11 +1,13 @@
 const cells = document.querySelectorAll('.cell');
 const Message = document.getElementById('message'); // changed to match your references
 const restartBtn = document.getElementById('reset');
+const modeBtn = document.getElementById('mode');
 
 // Game state variables
 let board = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 let GameOver = false;
+let vsComputer = false;
 
 // event listeners for each cell
 cells.forEach((cell, index) => {
@@ -14,6 +16,7 @@ cells.forEach((cell, index) => {
 
 // event listener for reset button
 restartBtn.addEventListener('click', resetGame);
+modeBtn.addEventListener('click', toggleMode);
 
 startGame();
 
@@ -36,6 +39,10 @@ function handleCellClick(cell, index) {
     board[index] = currentPlayer;
     cells[index].textContent = currentPlayer;
 
+    // Debugging logs
+    console.log(`Player ${currentPlayer} clicked cell ${index}`);
+    console.log('Current board:', board);
+
     // Check for win
     if (checkWin()) {
         // Ignore click if cell already filled or game is over
@@ -54,7 +61,48 @@ function handleCellClick(cell, index) {
     // Switch player
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
     Message.textContent = `Player ${currentPlayer}'s turn`;
+
+    if (vsComputer && currentPlayer === 'O' && !GameOver) {
+        setTimeout(computerMove, 500); // slight delay for realism
+    }
+    // Debugging log for next turn
+    console.log(`Next turn: Player ${currentPlayer}`);
 }
+
+
+function computerMove() {
+    // Find all empty cells
+    const emptyCells = board
+        .map((cell, index) => (cell === '' ? index : null))
+        .filter(cell => cell !== null);
+
+    if (emptyCells.length === 0) return; // no moves left
+
+    const randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    board[randomIndex] = 'O';
+    cells[randomIndex].textContent = 'O';
+
+    // Debugging logs
+    console.log(`Computer placed O in cell ${randomIndex}`);
+    console.log('Current board:', board);
+
+    // Check for win
+    if (checkWin("O")) {
+        Message.textContent = `Computer (O) wins!`;
+        GameOver = true;
+        return;
+    }
+    // Check for draw
+    if (board.every(cell => cell !== '')) {
+        Message.textContent = "It's a draw!";
+        GameOver = true;
+        return;
+    }
+    // Switch back to player
+    currentPlayer = 'X';
+    Message.textContent = `Player ${currentPlayer}'s turn`;
+}
+
 
 // Determines if the current player has a winning combination
 function checkWin() {
@@ -83,4 +131,13 @@ function resetGame() {
 
     cells.forEach(cell => (cell.textContent = ''));
     Message.textContent = `Player ${currentPlayer}'s turn`;
+
+    // Debugging log for reset
+    console.log('Game reset. Player X starts.');
+}
+
+function toggleMode() {
+    vsComputer = !vsComputer;
+    modeBtn.textContent = `Play vs Computer: ${vsComputer ? 'ON' : 'OFF'}`;
+    resetGame();
 }
