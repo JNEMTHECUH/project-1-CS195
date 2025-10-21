@@ -11,28 +11,61 @@ h1 {
     margin-top: 50px;
 }
 
-/* landing Page */
+/* Landing Page */
 .landing.page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #f0f0f0;
+    text-align: center;
+    padding: 0 20px;
 }
 
-.play-button, home-button {
+.landing.page h1 {
+    font-size: 3rem;
+    color: #00a8ff;
+    margin-bottom: 10px;
+}
+
+.landing.page p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    line-height: 1.6;
+    margin: 0 auto 30px;
+    color: #ccc;
+}
+
+.start-button {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 20px;
-    background: #333;
+    padding: 12px 32px;
+    background: #00a8ff;
     color: white;
-    border-radius: 8px;
+    border-radius: 25px;
     text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 168, 255, 0.3);
 }
 
-.play-button:hover, .home-button:hover {
-    background: #555;
+.start-button:hover {
+    background: #0090e0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 168, 255, 0.5);
 }
+
+footer {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
 
 /* game Page */
 #board {
